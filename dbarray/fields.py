@@ -50,6 +50,8 @@ class ArrayFieldBase(object):
         # or deserialize
         if value is None:
             return None
+        if isinstance(value, unicode):
+            value = [int(v) for v in  value.replace("[", "").replace("]", "").split(',') if v!=""]
         if not isinstance(value, (list, tuple, set, deque,)):
             try:
                 iter(value)
